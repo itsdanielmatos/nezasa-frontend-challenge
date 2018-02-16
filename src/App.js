@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Logo from './logos/nezasa_logo_white.svg';
+import Header from './components/Header/Header.js';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {contentLanguage: "en"};
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header logo={Logo} alt={"Nezasa Logo"} contentLanguageHandler={(language) => this.setState({contentLanguage: language})} contentLanguage={this.state.contentLanguage}/>
       </div>
     );
-  }
+  };
 }
 
 export default App;

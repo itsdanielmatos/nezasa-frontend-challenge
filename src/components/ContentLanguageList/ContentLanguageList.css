@@ -1,0 +1,21 @@
+.ContentLanguageSelector{
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+}
+
+.Selected {
+    cursor: default;
+    pointer-events: none;
+    font-weight: 700;
+}
