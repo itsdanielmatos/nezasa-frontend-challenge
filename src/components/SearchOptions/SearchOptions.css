@@ -1,0 +1,31 @@
+.SearchOptions {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 30px);
+    max-width: 750px;
+    height: 50px;
+    padding: 0px 15px;
+    margin-top: 15px;
+    background-color: #FFFFFF;
+}
+
+.Option {
+    cursor: pointer;
+}
+
+.Option.Selected {
+    font-weight: 700;
+    color: #C50101;
+    pointer-events: initial;
+}
+
+@media only screen  and (max-width : 500px) {
+    .SearchOptions{
+        flex-direction: column;
+        height: 125px;
+        padding: 15px 0px;
+    }
+}
+
