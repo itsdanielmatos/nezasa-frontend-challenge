@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import './SearchOptions.css';
+import './SearchFilter.css';
 
 
-class SearchOptions extends Component {
+class SearchFilter extends Component {
     constructor(props){
         super(props);
         this.state = {}
@@ -35,11 +35,11 @@ class SearchOptions extends Component {
 
     render() {
         return (
-            <div className="SearchOptions">
+            <div className="SearchFilter">
                 {this.getOptions(this.props.options)}
             </div>
         );
     };
 }
 
-export default SearchOptions;
+export default SearchFilter;

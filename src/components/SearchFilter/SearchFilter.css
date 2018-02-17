@@ -1,11 +1,11 @@
-.SearchOptions {
+.SearchFilter {
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: calc(100% - 30px);
     max-width: 750px;
-    height: 50px;
+    min-height: 50px;
     padding: 0px 15px;
     margin-top: 15px;
     background-color: #FFFFFF;
@@ -13,6 +13,7 @@
 
 .Option {
     cursor: pointer;
+    text-align: center;
 }
 
 .Option.Selected {
@@ -22,10 +23,12 @@
 }
 
 @media only screen  and (max-width : 500px) {
-    .SearchOptions{
+    .SearchFilter{
         flex-direction: column;
-        height: 125px;
-        padding: 15px 0px;
+        padding: 15px 15px;
+    }
+
+    .Option:not(:first-child) {
+        margin-top:15px;
     }
 }
-

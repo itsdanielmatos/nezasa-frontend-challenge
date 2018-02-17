@@ -3,23 +3,28 @@ import './App.css';
 import Logo from './logos/nezasa_logo_white.svg';
 import Header from './components/Header/Header.js';
 import SearchBar from './components/SearchBar/SearchBar.js';
-import SearchOptions from './components/SearchOptions/SearchOptions.js';
-
+import SearchFilter from './components/SearchFilter/SearchFilter.js';
+import Countries from 'i18n-iso-countries';
+import Locale from 'i18n-iso-countries/langs/en.json';
+ 
 class App extends Component {
   constructor() {
     super();
     this.api = "https://embed-staging.nezasa.com/api1/airports";
-    this.state = {useCOResponse: true, contentLanguage: "en", filter:""};
+    this.state = {queryParams:{useCOResponse: true, contentLanguage: "en"}, filter:""};
+    Countries.registerLocale(Locale);
+    this.countries = Countries.getNames("en");
   };
 
   fetchAirports(searchInput, callback) {
-    var query = "";
-    var queryParams = Object.assign({}, this.state);
-    delete queryParams["filter"];
+    var uri = "";
+    var queryParams = Object.assign({}, this.state.queryParams);
     for (var param in queryParams) {
-      query += (Object.keys(queryParams).indexOf(param) === 0 ? "?" : "&") + `${param}=${queryParams[param]}`;
+      uri += (Object.keys(queryParams).indexOf(param) === 0 ? "?" : "&") + `${param}=${queryParams[param]}`;
     }
-    fetch(`${this.api}${query}&query=${searchInput}`)
+    uri = `${this.api}${uri}&query=${searchInput}`
+    console.log(uri);
+    fetch(uri)
     .then(response => response.json())
     .then(json => {console.log(json); callback()});
   };
@@ -27,9 +32,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header logo={Logo} alt={"Nezasa Logo"} contentLanguageHandler={(language) => this.setState({contentLanguage: language})} contentLanguage={this.state.contentLanguage}/>
+        <Header logo={Logo} alt={"Nezasa Logo"} contentLanguageHandler={(language) => this.setState({queryParams:{contentLanguage: language}})} contentLanguage={this.state.queryParams.contentLanguage}/>
         <SearchBar fetchAirports={(searchInput, callback) => this.fetchAirports(searchInput, callback)} />
-        <SearchOptions options={{airport: "Airport Name", country: "Country Name", city: "City Name", iataCode: "IATA Code"}} searchByHandler={(option) => this.setState({filter: option})}/>
+        <SearchFilter options={{airport: "Airport Name", country: "Country Name", city: "City Name", iataCode: "IATA Code"}} searchByHandler={(option) => this.setState({filter: option})}/>
       </div>
     );
   };
