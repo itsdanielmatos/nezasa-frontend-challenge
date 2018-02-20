@@ -26,6 +26,7 @@
 
 .Title {
     font-weight: 700;
+    word-break: break-word;
 }
 
 .City {

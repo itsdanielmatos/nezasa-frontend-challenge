@@ -12,37 +12,42 @@ class App extends Component {
   constructor() {
     super();
     this.api = "https://embed-staging.nezasa.com/api1/airports";
-    this.state = {queryParams:{useCOResponse: true, contentLanguage: "en"}, filter:""};
+    this.state = {queryParams:{useCOResponse: true, contentLang: "en"}, filter:"", search: "", airports: []};
     Countries.registerLocale(Locale);
     this.countries = Countries.getNames("en");
   };
 
-  fetchAirports(searchInput, callback) {
-    var uri = "";
-    var queryParams = Object.assign({}, this.state.queryParams);
-    for (var param in queryParams) {
-      uri += (Object.keys(queryParams).indexOf(param) === 0 ? "?" : "&") + `${param}=${queryParams[param]}`;
+  fetchAirports(callback) {
+    if(this.state.search){
+      var uri = "";
+      var queryParams = Object.assign({}, this.state.queryParams);
+      for (var param in queryParams) {
+        uri += (Object.keys(queryParams).indexOf(param) === 0 ? "?" : "&") + `${param}=${queryParams[param]}`;
+      }
+      uri = `${this.api}${uri}&query=${this.state.search}`
+      fetch(uri)
+      .then(response => response.json())
+      .then(json => {
+        var filteredJson = json.map((airport) => {
+          return airport.airport;
+        });
+        this.setState({airports: filteredJson});
+      }).catch((error) => {
+        console.warn("Error while fetching for airports");
+      }).finally(()=> {if (callback) callback();});
+    }else{
+      this.setState({airports: []});
+      if (callback) callback();
     }
-    uri = `${this.api}${uri}&query=${searchInput}`
-    console.log(uri);
-    fetch(uri)
-    .then(response => response.json())
-    .then(json => {
-      var filteredJson = json.map((airport) => {
-        return airport.airport;
-      });
-      this.setState({airports: filteredJson})
-      callback();
-    });
   };
 
   render() {
     return (
       <div className="App">
-        <Header logo={Logo} alt={"Nezasa Logo"} contentLanguageHandler={(language) => this.setState({queryParams:{contentLanguage: language}})} contentLanguage={this.state.queryParams.contentLanguage}/>
-        <SearchBar fetchAirports={(searchInput, callback) => this.fetchAirports(searchInput, callback)} />
-        <SearchFilter options={{airport: "Airport Name", country: "Country Name", city: "City Name", iataCode: "IATA Code"}} searchByHandler={(option) => this.setState({filter: option})}/>
-        <AirportList airports={this.state.airports} />
+        <Header logo={Logo} alt={"Nezasa Logo"} contentLanguageHandler={(language) => this.setState({queryParams:{contentLang: language, useCOResponse: true}})} contentLanguage={this.state.queryParams.contentLang}/>
+        <SearchBar fetchAirports={(searchInput, callback) => {this.setState({search: searchInput}); this.fetchAirports(callback)}} />
+        <SearchFilter options={{name: "Airport Name", country: "Country Name", city: "City Name", iataCode: "IATA Code"}} searchByHandler={(option) => this.setState({filter: option})}/>
+        <AirportList airports={this.state.airports} filter={this.state.filter} search={this.state.search}/>
       </div>
     );
   };
