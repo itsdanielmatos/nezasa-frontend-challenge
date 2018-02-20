@@ -1,0 +1,14 @@
+.AirportList {
+    box-sizing: border-box;
+    margin: 15px 0px;
+    width: calc(100% - 30px);
+    max-width: 750px;
+    height: 100%;
+    overflow: auto;
+}
+
+.No-Results {
+    display: block;
+    text-align: center;
+    font-weight: 300;
+}

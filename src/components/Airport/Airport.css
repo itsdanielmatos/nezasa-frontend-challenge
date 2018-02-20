@@ -1,0 +1,40 @@
+.Airport:not(:first-child) {
+    margin-top: 15px;
+}
+
+.Airport {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    padding: 15px;
+    min-height: 75px;
+    box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.1);
+}
+
+.Maps {
+    height: 25px;
+    width: 25px;
+}
+
+.Title, .Content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Title {
+    font-weight: 700;
+}
+
+.City {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.Code {
+    font-weight: 700;
+    color: #BDBDBD;
+}
+

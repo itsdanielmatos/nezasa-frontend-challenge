@@ -6,6 +6,7 @@ import SearchBar from './components/SearchBar/SearchBar.js';
 import SearchFilter from './components/SearchFilter/SearchFilter.js';
 import Countries from 'i18n-iso-countries';
 import Locale from 'i18n-iso-countries/langs/en.json';
+import AirportList from './components/AirportList/AirportList';
  
 class App extends Component {
   constructor() {
@@ -26,7 +27,13 @@ class App extends Component {
     console.log(uri);
     fetch(uri)
     .then(response => response.json())
-    .then(json => {console.log(json); callback()});
+    .then(json => {
+      var filteredJson = json.map((airport) => {
+        return airport.airport;
+      });
+      this.setState({airports: filteredJson})
+      callback();
+    });
   };
 
   render() {
@@ -35,6 +42,7 @@ class App extends Component {
         <Header logo={Logo} alt={"Nezasa Logo"} contentLanguageHandler={(language) => this.setState({queryParams:{contentLanguage: language}})} contentLanguage={this.state.queryParams.contentLanguage}/>
         <SearchBar fetchAirports={(searchInput, callback) => this.fetchAirports(searchInput, callback)} />
         <SearchFilter options={{airport: "Airport Name", country: "Country Name", city: "City Name", iataCode: "IATA Code"}} searchByHandler={(option) => this.setState({filter: option})}/>
+        <AirportList airports={this.state.airports} />
       </div>
     );
   };
