@@ -4,12 +4,12 @@
     align-items: center;
     justify-content: space-between;
     flex-shrink: 0;
-    width:calc(100% - 30px);
+    width: calc(100% - 30px);
     max-width: 750px;
     height: 50px;
     padding: 0px 15px;
     margin-top: 15px;
-    background-color:#FFFFFF;
+    background-color: #FFFFFF;
 }
 
 .Search {
@@ -26,12 +26,12 @@
 }
 
 .SearchBar input {
-    box-sizing:border-box;
+    box-sizing: border-box;
     width: calc(100% - 40px);
     height: 30px;
-    margin:0;
-    padding:0;
-    border:0;
+    margin: 0;
+    padding: 0;
+    border: 0;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
     font-size: 18px;

@@ -6,9 +6,9 @@ import SearchIcon from './icons/search.svg';
 class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.timeouts = []
-        this.state = {isSearching: false}
-    }
+        this.timeouts = [];
+        this.state = {isSearching: false};
+    };
 
     clearTimeouts() {
         this.timeouts.forEach(clearTimeout);
@@ -19,19 +19,19 @@ class SearchBar extends Component {
     };
 
     handleAnimation() {
-        this.setState({isSearching: !this.state.isSearching})
+        this.setState({isSearching: !this.state.isSearching});
     };
 
     onChangeHandler(event) {
         if(!this.state.isSearching){
-            this.handleAnimation()
-        }
+            this.handleAnimation();
+        };
         this.clearTimeouts();
         var searchInput = event.target.value;
         var request = setTimeout(()=> {
-            this.props.fetchAirports(searchInput, this.handleAnimation.bind(this))
+            this.props.fetchAirports(searchInput, this.handleAnimation.bind(this));
         }, 1000)
-        this.addTimeout(request)
+        this.addTimeout(request);
     };
 
     render() {
@@ -42,6 +42,6 @@ class SearchBar extends Component {
             </div>
         );
     };
-}
+};
 
 export default SearchBar;

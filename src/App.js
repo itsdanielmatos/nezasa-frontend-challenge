@@ -24,7 +24,7 @@ class App extends Component {
       for (var param in queryParams) {
         uri += (Object.keys(queryParams).indexOf(param) === 0 ? "?" : "&") + `${param}=${queryParams[param]}`;
       }
-      uri = `${this.api}${uri}&query=${this.state.search}`
+      uri = `${this.api}${uri}&query=${this.state.search}`;
       fetch(uri)
       .then(response => response.json())
       .then(json => {
@@ -38,7 +38,7 @@ class App extends Component {
     }else{
       this.setState({airports: []});
       if (callback) callback();
-    }
+    };
   };
 
   render() {

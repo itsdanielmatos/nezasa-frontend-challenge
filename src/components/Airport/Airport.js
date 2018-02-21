@@ -14,7 +14,7 @@ const Airport = ({name, iataCode, country, city, lat, lng}) => {
                 <label className="Code">{iataCode}</label>
             </div>
         </div>
-    )
+    );
 }
 
 export default Airport;

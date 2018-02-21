@@ -8,7 +8,7 @@ const ContentLanguageSelector = ({languages, contentLanguageHandler, contentLang
 
     const getLanguages = (languages) => {
         return languages.map((language, index) => {
-           return <div key={index} className={`Language ${contentLanguage === language.toLowerCase() ? "Selected" : ""}`} onClick={(event) => languageSelectHandler(event)}>{language}</div>
+           return <div key={index} className={`Language ${contentLanguage === language.toLowerCase() ? "Selected" : ""}`} onClick={(event) => languageSelectHandler(event)}>{language}</div>;
         });
     };
 
