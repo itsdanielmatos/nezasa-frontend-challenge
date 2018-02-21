@@ -34,3 +34,6 @@ $ npm start
 ```
 
 After the execution of the above steps the application will be available on the following address: ```http://localhost:3000/```.
+
+## Online Example
+The application can be accessed through the following link: [Airport Finder](https://itsdanielmatos.github.io/nezasa-frontend-challenge/)

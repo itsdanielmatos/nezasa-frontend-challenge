@@ -11,7 +11,7 @@ import AirportList from './components/AirportList/AirportList';
 class App extends Component {
   constructor() {
     super();
-    this.api = "https://embed-staging.nezasa.com/api1/airports";
+    this.api = "https://crossorigin.me/https://embed-staging.nezasa.com/api1/airports";
     this.state = {queryParams:{useCOResponse: true, contentLang: "en"}, filter:"", search: "", airports: []};
     Countries.registerLocale(Locale);
     this.countries = Countries.getNames("en");
